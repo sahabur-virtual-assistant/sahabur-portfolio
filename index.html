@@ -1,235 +1,471 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#102f59">
-<meta name="description" content="Sahabur Virtual Assistant provides reliable data entry, e-commerce product listing, Excel, and administrative support.">
-<title>Sahabur Virtual Assistant | Reliable Business Support</title>
-<style>
-:root{
- --navy:#102f59;--navy2:#174779;--blue:#2d70c7;--sky:#e8f2ff;--ice:#f5f9ff;
- --ink:#172d49;--muted:#62738b;--line:#dce7f4;--white:#fff;--gold:#e7b766;
- --shadow:0 20px 55px rgba(17,48,89,.10);--radius:22px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:#fff;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-img{max-width:100%;display:block}
-.container{width:min(1140px,calc(100% - 40px));margin-inline:auto}
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(18px);border-bottom:1px solid rgba(220,231,244,.85)}
-.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
-.brand{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:0}
-.brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,var(--navy),var(--blue));display:grid;place-items:center;color:white;font-weight:900;font-size:1.1rem;box-shadow:0 8px 18px #2d70c733}
-.brand-name{font-weight:850;color:var(--navy);letter-spacing:-.4px;line-height:1.2}
-.brand-sub{display:block;font-size:.65rem;color:var(--muted);letter-spacing:2px;font-weight:750;margin-top:4px}
-.nav-links{display:flex;align-items:center;gap:25px}
-.nav-links>a:not(.btn){font-size:.91rem;text-decoration:none;color:#4c607a;font-weight:650}
-.nav-links>a:not(.btn):hover{color:var(--blue)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;border-radius:12px;padding:13px 19px;text-decoration:none;font-weight:750;font-size:.94rem;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}
-.btn:hover{transform:translateY(-2px)}
-.btn-primary{background:linear-gradient(135deg,var(--blue),var(--navy2));color:white;box-shadow:0 10px 24px #245fa52b}
-.btn-primary:hover{box-shadow:0 14px 28px #245fa53d}
-.btn-outline{border-color:#cbdbee;color:var(--navy);background:#fff}
-.menu-toggle{display:none;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--navy);width:44px;height:42px;font-size:1.25rem}
-.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 78% 22%,#dcecff 0,transparent 32%),linear-gradient(125deg,#f4f8ff 0%,#fff 60%,#f4f8ff 100%);padding:76px 0 82px}
-.hero:before{content:"";position:absolute;width:360px;height:360px;border:1px solid #d9e8fb;border-radius:50%;right:-130px;bottom:-220px}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:70px;position:relative}
-.pill{display:inline-flex;align-items:center;gap:8px;background:#e4efff;border:1px solid #d3e5fc;color:#235a99;padding:7px 12px;border-radius:999px;font-size:.77rem;letter-spacing:.65px;font-weight:800;text-transform:uppercase}
-.pill-dot{width:7px;height:7px;background:#2e9b74;border-radius:50%;box-shadow:0 0 0 4px #2e9b741b}
-h1{font-size:clamp(2.55rem,5vw,4.65rem);line-height:1.04;letter-spacing:-2.7px;color:var(--navy);margin:23px 0 20px;font-weight:850}
-h1 span{background:linear-gradient(100deg,#2d70c7,#174779);background-clip:text;-webkit-background-clip:text;color:transparent}
-.hero-copy{font-size:1.1rem;max-width:600px;color:var(--muted);margin:0}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 22px}
-.trust-line{display:flex;align-items:center;gap:10px;color:#5d718a;font-size:.9rem}
-.trust-line strong{color:var(--navy)}
-.hero-visual{position:relative;max-width:430px;width:100%;margin-inline:auto}
-.photo-frame{position:relative;padding:11px;border-radius:30px;background:linear-gradient(145deg,#fff,#d6e7fc);box-shadow:0 30px 70px #143b6820;transform:rotate(1deg)}
-.photo-frame img{width:100%;aspect-ratio:4/4.7;object-fit:cover;object-position:center top;border-radius:22px}
-.photo-tag{position:absolute;left:-28px;bottom:36px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);padding:13px 17px;border-radius:16px;display:flex;align-items:center;gap:11px;transform:rotate(-1deg)}
-.tag-icon{width:38px;height:38px;border-radius:12px;background:#e8f2ff;color:var(--blue);display:grid;place-items:center;font-size:1.1rem}
-.photo-tag strong{display:block;color:var(--navy);font-size:.9rem}
-.photo-tag small{display:block;color:var(--muted);font-size:.76rem}
-.stats-wrap{margin-top:-1px;background:white;position:relative}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);padding:25px 0;border-bottom:1px solid var(--line)}
-.stat{padding:7px 25px;text-align:center;border-right:1px solid var(--line)}
-.stat:last-child{border:0}
-.stat strong{display:block;font-size:1.75rem;letter-spacing:-.6px;color:var(--navy)}
-.stat span{font-size:.9rem;color:var(--muted)}
-section{padding:88px 0}
-.section-head{max-width:700px;text-align:center;margin:0 auto 42px}
-.kicker{font-size:.76rem;font-weight:850;text-transform:uppercase;letter-spacing:1.8px;color:var(--blue)}
-.section-head h2,.about-copy h2{font-size:clamp(2rem,3.3vw,2.8rem);letter-spacing:-1.25px;line-height:1.16;color:var(--navy);margin:12px 0}
-.section-head p{color:var(--muted);font-size:1.02rem;margin:0}
-.services{background:var(--ice)}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 23px;box-shadow:0 6px 22px #102f5908;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.icon{height:52px;width:52px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#edf5ff,#dcecff);color:var(--blue);font-size:1.45rem;margin-bottom:19px}
-.card h3{font-size:1.08rem;line-height:1.35;margin:0 0 10px;color:var(--navy)}
-.card p{font-size:.92rem;color:var(--muted);margin:0}
-.card ul{padding-left:18px;margin:15px 0 0;color:#596c84;font-size:.88rem}
-.card li{padding:3px 0}
-.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:58px;align-items:center}
-.feature-panel{background:linear-gradient(150deg,var(--navy),#1b568f);color:white;border-radius:28px;padding:34px;position:relative;overflow:hidden;box-shadow:0 22px 50px #102f5926}
-.feature-panel:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff26;border-radius:50%;right:-95px;top:-105px}
-.feature-panel h3{font-size:1.7rem;line-height:1.2;letter-spacing:-.7px;margin:0 0 12px;position:relative;z-index:1}
-.feature-panel p{color:#d8e8fa;margin:0;position:relative;z-index:1}
-.checklist{list-style:none;padding:0;margin:24px 0 0;position:relative;z-index:1}
-.checklist li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;color:#f2f7ff}
-.check{display:inline-grid;place-items:center;flex:0 0 22px;height:22px;border-radius:50%;background:#ffffff1c;color:#b7dbff;font-weight:900;font-size:.8rem}
-.about-copy h2{margin-top:9px}
-.about-copy p{color:var(--muted);margin:15px 0}
-.about-copy .btn{margin-top:10px}
-.portfolio{background:#f7faff}
-.samples{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.sample{background:white;border:1px solid var(--line);border-radius:20px;padding:22px;overflow:hidden}.sample-image{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center;border-radius:13px;border:1px solid var(--line);margin:0 0 18px;background:#f4f7fb}.sample .sample-top{margin-bottom:14px}.sample small{line-height:1.5}
-.sample-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.sample-icon{height:44px;width:44px;display:grid;place-items:center;border-radius:13px;background:#eaf3ff;color:var(--blue);font-size:1.2rem}
-.sample-label{font-size:.72rem;font-weight:800;color:#2e6eb4;background:#edf5ff;padding:5px 9px;border-radius:99px}
-.sample h3{color:var(--navy);margin:0 0 8px;font-size:1.05rem}
-.sample p{color:var(--muted);font-size:.92rem;margin:0}
-.sample small{display:block;color:#74859a;font-size:.78rem;margin-top:15px}
-.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.process{padding:20px 22px;border-left:3px solid #c7ddf8;background:#f8fbff;border-radius:0 14px 14px 0}
-.process strong{display:block;color:var(--navy);margin-bottom:5px}
-.process p{color:var(--muted);font-size:.9rem;margin:0}
-.contact{padding:0 0 86px}
-.contact-panel{position:relative;overflow:hidden;text-align:center;background:radial-gradient(circle at 90% 10%,#2b6198 0,transparent 32%),linear-gradient(120deg,#102f59,#194d82);color:white;border-radius:30px;padding:60px 28px}
-.contact-panel h2{font-size:clamp(2rem,4vw,3.15rem);line-height:1.12;letter-spacing:-1.3px;margin:0 auto 14px;max-width:760px}
-.contact-panel p{color:#d8e8fa;max-width:640px;margin:0 auto 26px}
-.contact-panel .btn{background:#fff;color:var(--navy)}
-.email{display:block;margin-top:19px;color:#fff;text-decoration:none;font-weight:750}
-footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:.87rem}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.footer-inner a{color:var(--blue);text-decoration:none;font-weight:700}
-@media(max-width:1000px){.hero-grid{gap:38px}.cards{grid-template-columns:repeat(2,1fr)}.about-grid{gap:32px}.nav-links{gap:16px}}
-@media(max-width:700px){
- .container{width:min(100% - 32px,540px)}
- .nav{min-height:70px}.menu-toggle{display:block}
- .nav-links{display:none;position:absolute;left:0;right:0;top:70px;background:#fff;border-bottom:1px solid var(--line);padding:18px 22px 22px;box-shadow:0 18px 24px #102f5910;flex-direction:column;align-items:stretch;gap:16px}
- .nav-links.open{display:flex}.nav-links>a:not(.btn){padding:5px 0}
- .hero{padding:52px 0 58px}.hero-grid{grid-template-columns:1fr;gap:38px}
- h1{font-size:clamp(2.6rem,11vw,3.6rem);letter-spacing:-1.8px}
- .hero-copy{font-size:1rem}.hero-visual{max-width:330px}.photo-tag{left:-10px;bottom:22px}
- .stats{padding:18px 0}.stat{padding:7px 8px}.stat strong{font-size:1.28rem}.stat span{font-size:.75rem}
- section{padding:62px 0}.section-head{margin-bottom:29px}
- .cards{grid-template-columns:1fr}.card{padding:23px}
- .about-grid{grid-template-columns:1fr;gap:30px}.feature-panel{padding:28px}
- .samples,.process-grid{grid-template-columns:1fr}
- .contact{padding:0 0 60px}.contact-panel{padding:44px 22px;border-radius:23px}
- .footer-inner{flex-direction:column;text-align:center;gap:8px}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <meta name="description" content="Sahabur Rahman is a Virtual Assistant providing data entry, e-commerce product listing, Excel and Google Sheets support, web research, CRM updates, and administrative assistance.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Sahabur Rahman | Virtual Assistant">
+  <meta property="og:description" content="Reliable virtual assistance for organized operations, accurate data, and smoother e-commerce workflows.">
+  <meta property="og:type" content="website">
+  <title>Sahabur Rahman | Virtual Assistant & E-commerce Support</title>
+  <style>
+    :root {
+      --navy: #102a43;
+      --navy-2: #173f63;
+      --blue: #1769d2;
+      --blue-bright: #287df0;
+      --blue-pale: #eaf3ff;
+      --ink: #172b42;
+      --muted: #607187;
+      --line: #dce6f0;
+      --surface: #f5f8fc;
+      --white: #fff;
+      --green: #19a66a;
+      --shadow: 0 18px 55px rgba(16, 42, 67, .09);
+      --radius: 22px;
+      --max: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0; color: var(--ink); background: var(--white);
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .container { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+    .skip-link { position: absolute; left: -9999px; top: 8px; z-index: 99; }
+    .skip-link:focus { left: 12px; padding: 10px 14px; background: white; border: 2px solid var(--blue); border-radius: 8px; }
+    .site-header {
+      position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.94);
+      border-bottom: 1px solid rgba(220,230,240,.9); backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .brand-mark {
+      width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px;
+      color: #fff; background: linear-gradient(145deg, var(--navy), var(--blue));
+      font-weight: 900; letter-spacing: -1px; box-shadow: 0 8px 20px rgba(23,105,210,.2);
+    }
+    .brand-name { display: block; color: var(--navy); font-weight: 850; letter-spacing: -.45px; line-height: 1.15; }
+    .brand-sub { display: block; margin-top: 4px; color: var(--muted); font-size: .65rem; font-weight: 800; letter-spacing: 2.2px; }
+    .nav-links { display: flex; align-items: center; gap: 25px; }
+    .nav-links a:not(.btn) { color: #52677d; font-size: .91rem; font-weight: 700; text-decoration: none; transition: color .2s; }
+    .nav-links a:not(.btn):hover, .nav-links a[aria-current="page"] { color: var(--blue); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      min-height: 48px; padding: 12px 19px; border: 1px solid transparent; border-radius: 12px;
+      font: inherit; font-size: .93rem; font-weight: 800; text-decoration: none; cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #90c2ff; outline-offset: 3px; }
+    .btn-primary { color: #fff; background: linear-gradient(135deg, var(--blue-bright), var(--blue)); box-shadow: 0 10px 22px rgba(23,105,210,.2); }
+    .btn-primary:hover { box-shadow: 0 14px 28px rgba(23,105,210,.28); }
+    .btn-secondary { color: var(--navy); background: #fff; border-color: #cbd9e8; }
+    .btn-whatsapp { color: #fff; background: var(--green); box-shadow: 0 10px 22px rgba(25,166,106,.18); }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 12px; color: var(--navy); background: white; font-size: 1.35rem; }
+    .hero {
+      position: relative; overflow: hidden; padding: 78px 0 76px;
+      background: radial-gradient(ellipse at 83% 16%, rgba(189,218,255,.58), transparent 33%),
+                  radial-gradient(ellipse at 8% 100%, rgba(226,239,255,.7), transparent 34%),
+                  linear-gradient(120deg, #f5f9ff 0%, #fff 55%, #f6faff 100%);
+    }
+    .hero:after { content: ""; position: absolute; width: 440px; height: 440px; border: 1px solid rgba(40,125,240,.13); border-radius: 50%; right: -230px; bottom: -300px; pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; gap: 72px; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 7px 12px; color: #205c9b; background: #e8f2ff; border: 1px solid #d5e7fb; border-radius: 999px; font-size: .75rem; font-weight: 850; letter-spacing: 1px; text-transform: uppercase; }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: #1ca66a; box-shadow: 0 0 0 4px rgba(28,166,106,.12); }
+    h1 { margin: 22px 0 20px; color: var(--navy); font-size: clamp(2.65rem, 5vw, 4.55rem); font-weight: 900; line-height: 1.04; letter-spacing: -2.8px; }
+    h1 span { color: var(--blue); }
+    .hero-copy { max-width: 590px; margin: 0; color: var(--muted); font-size: 1.1rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 29px 0 22px; }
+    .trust-points { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 16px; color: #586d84; font-size: .88rem; }
+    .trust-points span { display: inline-flex; align-items: center; gap: 7px; }
+    .trust-points b { color: var(--navy); }
+    .trust-check { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: #14734e; background: #dff7eb; font-size: .75rem; font-weight: 900; }
+    .hero-visual { width: 100%; max-width: 430px; margin: 0 auto; position: relative; }
+    .photo-frame { padding: 10px; background: linear-gradient(145deg, #fff, #d5e7fb); border-radius: 28px; box-shadow: 0 28px 70px rgba(16,42,67,.15); transform: rotate(1deg); }
+    .photo-frame img { width: 100%; aspect-ratio: 4 / 4.65; object-fit: cover; object-position: center top; border-radius: 20px; background: #e9f1fa; }
+    .photo-tag { position: absolute; left: -30px; bottom: 32px; display: flex; align-items: center; gap: 11px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 15px; background: #fff; box-shadow: var(--shadow); }
+    .tag-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 12px; color: var(--blue); background: var(--blue-pale); font-size: 1.15rem; font-weight: 900; }
+    .photo-tag strong { display: block; color: var(--navy); font-size: .9rem; }
+    .photo-tag small { display: block; color: var(--muted); font-size: .76rem; }
+    .stats-band { background: #fff; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .stat { padding: 6px 20px; text-align: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; color: var(--navy); font-size: 1.8rem; line-height: 1.25; letter-spacing: -.7px; }
+    .stat span { color: var(--muted); font-size: .9rem; }
+    section { padding: 86px 0; }
+    .section-head { max-width: 720px; margin: 0 auto 42px; text-align: center; }
+    .kicker { color: var(--blue); font-size: .75rem; font-weight: 900; letter-spacing: 1.8px; text-transform: uppercase; }
+    .section-head h2, .about-copy h2 { margin: 11px 0 13px; color: var(--navy); font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.15; letter-spacing: -1.3px; }
+    .section-head p { margin: 0; color: var(--muted); font-size: 1rem; }
+    .services-section { background: var(--surface); }
+    .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 17px; }
+    .service-card { padding: 23px 21px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 5px 18px rgba(16,42,67,.025); transition: transform .22s, box-shadow .22s, border-color .22s; }
+    .service-card:hover { transform: translateY(-4px); border-color: #c4dcf8; box-shadow: var(--shadow); }
+    .service-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 17px; border-radius: 14px; color: var(--blue); background: linear-gradient(145deg, #edf5ff, #dcecff); font-size: 1.3rem; font-weight: 800; }
+    .service-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.02rem; line-height: 1.35; }
+    .service-card p { margin: 0; color: var(--muted); font-size: .89rem; }
+    .service-category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; }
+    .service-category { padding: 27px; }
+    .service-category h3 { font-size: 1.14rem; }
+    .category-intro { min-height: 48px; margin-bottom: 15px !important; }
+    .service-list { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; }
+    .service-list li { position: relative; padding-left: 23px; color: var(--muted); font-size: .89rem; line-height: 1.5; }
+    .service-list li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--blue); font-weight: 900; }
+    .services-bottom-cta { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 28px; padding: 22px 25px; border: 1px solid #d8e7f8; border-radius: 17px; background: #fff; }
+    .services-bottom-cta p { margin: 0; color: var(--navy); font-weight: 700; }
+    .about-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 56px; align-items: center; }
+    .feature-panel { position: relative; overflow: hidden; padding: 35px; border-radius: 25px; color: #fff; background: linear-gradient(145deg, var(--navy), #1a568b); box-shadow: 0 20px 48px rgba(16,42,67,.16); }
+    .feature-panel:after { content: ""; position: absolute; top: -120px; right: -95px; width: 250px; height: 250px; border: 1px solid rgba(255,255,255,.17); border-radius: 50%; }
+    .feature-panel h3 { position: relative; z-index: 1; margin: 0 0 12px; font-size: 1.65rem; line-height: 1.2; letter-spacing: -.6px; }
+    .feature-panel p { position: relative; z-index: 1; margin: 0; color: #d8e8f8; }
+    .checklist { position: relative; z-index: 1; margin: 22px 0 0; padding: 0; list-style: none; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; color: #f4f8fd; font-size: .94rem; }
+    .check { display: inline-grid; flex: 0 0 21px; place-items: center; width: 21px; height: 21px; margin-top: 2px; border-radius: 50%; color: #b9e1ff; background: rgba(255,255,255,.14); font-size: .75rem; font-weight: 900; }
+    .about-copy h2 { margin-top: 8px; }
+    .about-copy p { margin: 14px 0; color: var(--muted); }
+    .about-copy .btn { margin-top: 9px; }
+    .portfolio-section { background: #f7faff; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .portfolio-card { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: #fff; box-shadow: 0 5px 18px rgba(16,42,67,.025); }
+    .portfolio-card img { width: 100%; aspect-ratio: 16 / 8.5; object-fit: cover; object-position: center; background: #edf2f8; border-bottom: 1px solid var(--line); }
+    .portfolio-body { padding: 23px; }
+    .portfolio-label { display: inline-block; margin-bottom: 10px; padding: 5px 9px; border-radius: 999px; color: #225c99; background: #eaf3ff; font-size: .72rem; font-weight: 850; }
+    .portfolio-card h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.1rem; line-height: 1.35; }
+    .portfolio-card p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .process-card { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+    .process-number { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-bottom: 13px; border-radius: 11px; color: var(--blue); background: var(--blue-pale); font-size: .83rem; font-weight: 900; }
+    .process-card h3 { margin: 0 0 6px; color: var(--navy); font-size: 1rem; }
+    .process-card p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .contact-section { padding: 0 0 82px; }
+    .contact-panel { position: relative; overflow: hidden; padding: 58px 26px; border-radius: 28px; color: #fff; text-align: center; background: radial-gradient(circle at 90% 0%, #285d91 0, transparent 31%), linear-gradient(120deg, #102a43, #174a79); }
+    .contact-panel:before { content: ""; position: absolute; left: -150px; bottom: -250px; width: 380px; height: 380px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; }
+    .contact-panel h2 { position: relative; max-width: 760px; margin: 0 auto 13px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.13; letter-spacing: -1.3px; }
+    .contact-panel p { position: relative; max-width: 630px; margin: 0 auto 25px; color: #d8e8f8; }
+    .contact-actions { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .contact-panel .btn-secondary { color: var(--navy); }
+    .contact-panel .btn-whatsapp { color: #fff; }
+    .contact-details { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 9px 24px; margin-top: 22px; }
+    .contact-details a { color: #fff; font-size: .93rem; font-weight: 750; text-decoration: none; }
+    .contact-details a:hover { text-decoration: underline; }
+    footer { padding: 23px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .footer-inner a { color: var(--blue); font-weight: 750; text-decoration: none; }
+    @media (max-width: 1020px) {
+      .hero-grid { gap: 42px; }
+      .service-grid { grid-template-columns: repeat(3, 1fr); }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.btn) { font-size: .86rem; }
+    }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 32px, 560px); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: calc(100% + 1px); left: 0; right: 0; padding: 17px 22px 22px; align-items: stretch; gap: 5px; background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 18px 25px rgba(16,42,67,.08); }
+      .nav-links.open { display: flex; flex-direction: column; }
+      .nav-links a:not(.btn) { padding: 9px 2px; font-size: .96rem; }
+      .nav-links .btn { margin-top: 8px; }
+      .hero { padding: 55px 0 60px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 43px; }
+      h1 { font-size: clamp(2.5rem, 11vw, 3.8rem); letter-spacing: -2px; }
+      .hero-copy { font-size: 1rem; }
+      .hero-visual { max-width: 360px; }
+      .photo-tag { left: -8px; bottom: 20px; }
+      .stats { padding: 20px 0; }
+      .stat { padding: 5px 8px; }
+      .stat strong { font-size: 1.3rem; }
+      .stat span { font-size: .76rem; }
+      section { padding: 66px 0; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .service-category-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 19px 16px; }
+      .services-bottom-cta { align-items: stretch; flex-direction: column; padding: 19px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .contact-section { padding-bottom: 58px; }
+      .contact-panel { padding: 43px 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 420px) {
+      .brand-name { font-size: .94rem; }
+      .brand-sub { font-size: .57rem; letter-spacing: 1.7px; }
+      .brand-mark { width: 40px; height: 40px; }
+      .hero-actions .btn { width: 100%; }
+      .service-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; gap: 12px; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--line); padding: 10px 0 14px; }
+      .stat:last-child { border-bottom: 0; }
+      .contact-actions .btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <nav class="container nav" aria-label="Main navigation">
-    <a class="brand" href="#home" aria-label="Sahabur Virtual Assistant home">
-      <span class="brand-mark">S</span>
-      <span><span class="brand-name">Sahabur</span><span class="brand-sub">VIRTUAL ASSISTANT</span></span>
-    </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#services">Services</a><a href="#about">About</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a>
-      <a class="btn btn-primary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">Hire Me on Fiverr ↗</a>
-    </div>
-  </nav>
-</header>
-<main>
-<section class="hero" id="home">
-  <div class="container hero-grid">
-    <div>
-      <span class="pill"><span class="pill-dot"></span> Reliable business support</span>
-      <h1>More time for your business. <span>Less time on busywork.</span></h1>
-      <p class="hero-copy">I'm Sahabur, a Virtual Assistant helping businesses stay organized with accurate data entry, e-commerce product listing, Excel management, and administrative support.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">Work With Me <span aria-hidden="true">↗</span></a>
-        <a class="btn btn-outline" href="#services">Explore Services ↓</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Sahabur Rahman home">
+        <span class="brand-mark" aria-hidden="true">SR</span>
+        <span><span class="brand-name">Sahabur Rahman</span><span class="brand-sub">VIRTUAL ASSISTANT</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" aria-current="page">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-primary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">Hire Me on Fiverr <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="trust-line"><strong>10+ years of experience</strong><span>·</span><strong>1,200+ Fiverr projects</strong></div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> Reliable · Accurate · On time</span>
+          <h1>Your trusted <span>Virtual Assistant.</span></h1>
+          <p class="hero-copy">I help business owners and e-commerce teams save time, keep information organized, and move daily operations forward with dependable virtual support.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">Discuss a Project <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-whatsapp" href="https://wa.me/8801717212789" target="_blank" rel="noopener noreferrer">WhatsApp Me <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#services">Explore Services ↓</a>
+          </div>
+          <div class="trust-points">
+            <span><i class="trust-check" aria-hidden="true">✓</i><b>10+ years' experience</b></span>
+            <span><i class="trust-check" aria-hidden="true">✓</i><b>1,200+ completed projects</b></span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="photo-frame"><img src="profile-photo.png" alt="Sahabur Rahman in professional attire" fetchpriority="high"></div>
+          <div class="photo-tag"><span class="tag-icon" aria-hidden="true">✓</span><span><strong>Detail-focused support</strong><small>Clear communication · On-time delivery</small></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-band" aria-label="Experience and service highlights">
+      <div class="container stats">
+        <div class="stat"><strong>10+ Years</strong><span>Virtual assistance experience</span></div>
+        <div class="stat"><strong>1,200+</strong><span>Completed projects</span></div>
+        <div class="stat"><strong>Client-first</strong><span>Quality and clear communication</span></div>
+      </div>
     </div>
-    <div class="hero-visual">
-      <div class="photo-frame"><img src="profile-photo.png" alt="Professional portrait of Sahabur" fetchpriority="high"></div>
-      <div class="photo-tag"><span class="tag-icon">✓</span><span><strong>Detail-focused support</strong><small>Clear communication · On-time delivery</small></span></div>
-    </div>
-  </div>
-</section>
-<div class="stats-wrap"><div class="container stats">
-  <div class="stat"><strong>10+ Years</strong><span>Professional experience</span></div>
-  <div class="stat"><strong>1,200+</strong><span>Fiverr projects completed</span></div>
-  <div class="stat"><strong>On Time</strong><span>Deadline-focused delivery</span></div>
-</div></div>
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-head"><span class="kicker">How I can help</span><h2>Reliable support for the work that keeps business moving.</h2><p>Flexible assistance for online stores, busy teams, and growing businesses.</p></div>
-    <div class="cards">
-      <article class="card"><div class="icon" aria-hidden="true">▦</div><h3>Data Entry & Web Research</h3><p>Accurate data collection and organized digital records.</p><ul><li>Online and offline data entry</li><li>Web research and data collection</li><li>PDF to Excel or Word</li><li>Data cleanup and formatting</li></ul></article>
-      <article class="card"><div class="icon" aria-hidden="true">▣</div><h3>E-commerce Product Listing</h3><p>Consistent, well-organized product catalog management.</p><ul><li>Shopify and WooCommerce</li><li>Product titles and descriptions</li><li>SKU, price, and inventory updates</li><li>Images, tags, and categories</li></ul></article>
-      <article class="card"><div class="icon" aria-hidden="true">▤</div><h3>Excel & Google Sheets</h3><p>Clear spreadsheets that make your data easier to use.</p><ul><li>Data entry and formatting</li><li>Sorting and cleanup</li><li>Inventory and tracking sheets</li><li>Basic formulas and reports</li></ul></article>
-      <article class="card"><div class="icon" aria-hidden="true">✓</div><h3>Administrative Support</h3><p>Dependable help with everyday business operations.</p><ul><li>Document and file organization</li><li>CRM updates and record keeping</li><li>Information management</li><li>Routine administrative tasks</li></ul></article>
-    </div>
-  </div>
-</section>
-<section id="about">
-  <div class="container about-grid">
-    <div class="feature-panel"><h3>A reliable partner for your daily operations.</h3><p>I focus on making your workload lighter while keeping details organized and tasks moving forward.</p><ul class="checklist"><li><span class="check">✓</span> Attention to detail</li><li><span class="check">✓</span> Clear, professional communication</li><li><span class="check">✓</span> Respect for agreed deadlines</li><li><span class="check">✓</span> Careful handling of client information</li></ul></div>
-    <div class="about-copy"><span class="kicker">A little about me</span><h2>Hello, I'm Sahabur.</h2><p>I'm a Virtual Assistant specializing in data entry, e-commerce product management, spreadsheet organization, and administrative support. I help business owners, online store teams, and professionals manage important routine tasks more efficiently.</p><p>From updating product catalogs to organizing Excel records, my goal is to deliver accurate work, communicate clearly, and meet agreed deadlines.</p><a class="btn btn-primary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">View My Fiverr Profile ↗</a></div>
-  </div>
-</section>
-<section class="portfolio" id="portfolio">
-  <div class="container">
-    <div class="section-head"><span class="kicker">Selected work</span><h2>Portfolio &amp; Case Studies</h2><p>A selection of practical work samples covering e-commerce operations, web research, document conversion, and ongoing database updates.</p></div>
-    <div class="samples">
-      <article class="sample">
-        <img class="sample-image" src="./case-ecommerce.png" alt="Shopify product dashboard showing product listings, status, inventory, categories and vendors" loading="lazy">
-        <div class="sample-top"><span class="sample-icon">▣</span><span class="sample-label">E-commerce</span></div>
-        <h3>E-commerce Management — Shopify</h3>
-        <p>Worked with a Shopify product dashboard to review and manage catalog information, including product listings, status, inventory, categories, sales channels, and vendor details.</p>
-        <small>Skills shown: Product catalog management · Inventory monitoring · Product information review</small>
-      </article>
-      <article class="sample">
-        <img class="sample-image" src="./case-web-research.png" alt="Spreadsheet with researched organization and contact data, with names and email addresses obscured" loading="lazy">
-        <div class="sample-top"><span class="sample-icon">⌕</span><span class="sample-label">Web Research</span></div>
-        <h3>Web Research &amp; Data Collection</h3>
-        <p>Collected and organized organization records in a structured spreadsheet, with fields for organization names, contact roles, names, and email addresses.</p>
-        <small>Skills shown: Online research · Lead data organization · Spreadsheet structuring</small>
-      </article>
-      <article class="sample">
-        <img class="sample-image" src="./case-pdf-to-spreadsheet.png" alt="Scanned travel log beside its structured spreadsheet conversion" loading="lazy">
-        <div class="sample-top"><span class="sample-icon">▤</span><span class="sample-label">Data Conversion</span></div>
-        <h3>PDF to Excel / Spreadsheet Conversion</h3>
-        <p>Transferred information from a scanned travel log into a structured spreadsheet, organizing travel dates, odometer readings, kilometers, work-related status, and travel purpose.</p>
-        <small>Skills shown: Data transcription · Document conversion · Spreadsheet formatting</small>
-      </article>
-      <article class="sample">
-        <img class="sample-image" src="./case-daily-database.png" alt="Spreadsheet tracking order dates, invoice numbers, product names, quantities, bids, fees, VAT and item prices" loading="lazy">
-        <div class="sample-top"><span class="sample-icon">▦</span><span class="sample-label">Database Updates</span></div>
-        <h3>Daily Database Update &amp; Price Tracking</h3>
-        <p>Maintained organized order and product records, including order dates, invoice numbers, quantities, winning bids, auction and shipping fees, VAT, and price per item.</p>
-        <small>Skills shown: Daily data updates · Price tracking · Record organization</small>
-      </article>
-    </div>
-  </div>
-</section>
-<section>
-  <div class="container">
-    <div class="section-head"><span class="kicker">Simple process</span><h2>Working together is straightforward.</h2></div>
-    <div class="process-grid"><div class="process"><strong>01 · Share your task</strong><p>Tell me about your goals, requirements, and deadline.</p></div><div class="process"><strong>02 · Confirm the details</strong><p>We align on the scope, format, and delivery expectations.</p></div><div class="process"><strong>03 · Get organized results</strong><p>I complete the agreed work and keep communication clear.</p></div></div>
-  </div>
-</section>
-<section class="contact" id="contact">
-  <div class="container"><div class="contact-panel"><h2>Ready to make your workload lighter?</h2><p>Have a project or recurring task in mind? Get in touch to discuss how I can support your business.</p><a class="btn" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">Let's Talk on Fiverr ↗</a><a class="email" href="mailto:sahabur.connect@gmail.com">sahabur.connect@gmail.com</a></div></div>
-</section>
-</main>
-<footer><div class="container footer-inner"><span>© 2026 Sahabur Virtual Assistant. All rights reserved.</span><a href="#home">Back to top ↑</a></div></footer>
-<script>
-const menuToggle=document.getElementById('menuToggle');
-const navLinks=document.getElementById('navLinks');
-menuToggle.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuToggle.setAttribute('aria-expanded',String(open));menuToggle.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');menuToggle.textContent=open?'×':'☰';});
-navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','Open navigation menu');menuToggle.textContent='☰';}));
-</script>
+
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Services & capabilities</span>
+          <h2>Flexible support for the work behind your business.</h2>
+          <p>Explore the specific tasks I can help with across data entry, daily operations, research, e-commerce, social media, and virtual assistance.</p>
+        </div>
+        <div class="service-grid service-category-grid">
+          <article class="service-card service-category">
+            <div class="service-icon" aria-hidden="true">▦</div>
+            <h3>Data Entry Services</h3>
+            <p class="category-intro">Accurate data entry, checking, cleanup, and organization.</p>
+            <ul class="service-list">
+              <li>General, online, and offline data entry</li>
+              <li>Excel and Google Sheets data entry</li>
+              <li>Database and CRM data entry</li>
+              <li>Product, order, and customer data entry</li>
+              <li>Data entry from websites, PDFs, and images</li>
+              <li>Copy-paste and manual data entry</li>
+              <li>Data verification and validation</li>
+              <li>Data updating and maintenance</li>
+              <li>Data cleaning, formatting, and organization</li>
+              <li>Data migration and bulk data entry</li>
+              <li>Data collection and entry</li>
+            </ul>
+          </article>
+          <article class="service-card service-category">
+            <div class="service-icon" aria-hidden="true">▤</div>
+            <h3>Daily Data & Operations Support</h3>
+            <p class="category-intro">Keep recurring records and business information up to date.</p>
+            <ul class="service-list">
+              <li>Online database updates</li>
+              <li>Daily and weekly spreadsheet updates</li>
+              <li>Order history management</li>
+              <li>Order status updates</li>
+              <li>Excel and Google Sheets management</li>
+              <li>Data formatting and organization</li>
+              <li>CRM updates</li>
+              <li>Record maintenance</li>
+              <li>Document and file management</li>
+            </ul>
+          </article>
+          <article class="service-card service-category">
+            <div class="service-icon" aria-hidden="true">⌕</div>
+            <h3>Research & Data Support</h3>
+            <p class="category-intro">Gather information and present it in a useful, organized format.</p>
+            <ul class="service-list">
+              <li>Web research</li>
+              <li>Online information gathering</li>
+              <li>Data collection</li>
+              <li>Web scraping</li>
+              <li>Competitor research</li>
+              <li>Lead and data research</li>
+              <li>PDF-to-Excel and PDF-to-Word conversion</li>
+            </ul>
+          </article>
+          <article class="service-card service-category">
+            <div class="service-icon" aria-hidden="true">▱</div>
+            <h3>E-commerce Support</h3>
+            <p class="category-intro">Help maintain product information and day-to-day store records.</p>
+            <ul class="service-list">
+              <li>Product listing</li>
+              <li>Product information updates</li>
+              <li>Order management</li>
+              <li>Order history updates</li>
+              <li>Inventory and data updates</li>
+              <li>Customer and order record management</li>
+            </ul>
+          </article>
+          <article class="service-card service-category">
+            <div class="service-icon" aria-hidden="true">◉</div>
+            <h3>Social Media Management</h3>
+            <p class="category-intro">Organize content and assist with routine social media activity.</p>
+            <ul class="service-list">
+              <li>Creating posts</li>
+              <li>Creating post images</li>
+              <li>Scheduling and publishing posts</li>
+              <li>Monitoring and replying to comments</li>
+              <li>Responding to messages</li>
+              <li>Post management</li>
+              <li>Engagement and reaction management</li>
+              <li>Content organization</li>
+              <li>Basic social media research</li>
+            </ul>
+          </article>
+          <article class="service-card service-category">
+            <div class="service-icon" aria-hidden="true">✓</div>
+            <h3>Administrative & Virtual Assistance</h3>
+            <p class="category-intro">Practical help with everyday administrative and back-office tasks.</p>
+            <ul class="service-list">
+              <li>Daily administrative tasks</li>
+              <li>Email and data organization</li>
+              <li>File management</li>
+              <li>Copy-paste tasks</li>
+              <li>Typing</li>
+              <li>Document formatting</li>
+              <li>Repetitive back-office tasks</li>
+              <li>General virtual assistance</li>
+            </ul>
+          </article>
+        </div>
+        <div class="services-bottom-cta">
+          <p>Have a specific task in mind? Tell me what you need, and we can discuss the scope and timeline.</p>
+          <a class="btn btn-primary" href="https://wa.me/8801717212789" target="_blank" rel="noopener noreferrer">Discuss Your Requirements ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="feature-panel">
+          <h3>A dependable extra pair of hands for your business.</h3>
+          <p>My focus is to reduce routine workload while keeping the details accurate and the work organized.</p>
+          <ul class="checklist">
+            <li><span class="check" aria-hidden="true">✓</span> Detail-oriented work and careful checking</li>
+            <li><span class="check" aria-hidden="true">✓</span> Clear, professional communication</li>
+            <li><span class="check" aria-hidden="true">✓</span> Respect for agreed deadlines</li>
+            <li><span class="check" aria-hidden="true">✓</span> Flexible support based on task requirements</li>
+          </ul>
+        </div>
+        <div class="about-copy">
+          <span class="kicker">A little about me</span>
+          <h2>Hello, I'm Sahabur.</h2>
+          <p>I'm a Virtual Assistant with experience supporting data entry, e-commerce product management, spreadsheet organization, web research, and administrative tasks. I help business owners, online store teams, and professionals manage recurring work more efficiently.</p>
+          <p>From updating product catalogs to organizing Excel records, I aim to deliver accurate results, communicate clearly, and complete work within the agreed timeline.</p>
+          <a class="btn btn-primary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">View My Fiverr Profile <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio">
+      <div class="container">
+        <div class="section-head"><span class="kicker">Selected work</span><h2>Portfolio &amp; case studies.</h2><p>A look at practical work involving e-commerce operations, research, document conversion, and database updates.</p></div>
+        <div class="portfolio-grid">
+          <article class="portfolio-card">
+            <img src="assets/case-ecommerce.png" alt="E-commerce product dashboard and catalog management example" loading="lazy">
+            <div class="portfolio-body"><span class="portfolio-label">E-commerce</span><h3>E-commerce Management — Shopify</h3><p>Product catalog support, including product listings, status, inventory, categories, sales channels, and vendor details.</p></div>
+          </article>
+          <article class="portfolio-card">
+            <img src="assets/case-web-research.png" alt="Structured spreadsheet used for web research and data collection" loading="lazy">
+            <div class="portfolio-body"><span class="portfolio-label">Web research</span><h3>Web Research &amp; Data Collection</h3><p>Research and organization of records in a structured spreadsheet with fields for organizations and contact information.</p></div>
+          </article>
+          <article class="portfolio-card">
+            <img src="assets/case-pdf-to-spreadsheet.png" alt="Document and spreadsheet example for PDF conversion" loading="lazy">
+            <div class="portfolio-body"><span class="portfolio-label">Data conversion</span><h3>PDF to Excel / Spreadsheet Conversion</h3><p>Transcription of information from a scanned document into a structured spreadsheet with clear columns and consistent formatting.</p></div>
+          </article>
+          <article class="portfolio-card">
+            <img src="assets/case-daily-database.png" alt="Spreadsheet example for daily database updates and price tracking" loading="lazy">
+            <div class="portfolio-body"><span class="portfolio-label">Database updates</span><h3>Daily Database Update &amp; Price Tracking</h3><p>Maintenance of organized order and product records, including dates, invoice details, quantities, fees, VAT, and item prices.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-head"><span class="kicker">A simple process</span><h2 id="process-title">Easy to start. Clear at every step.</h2><p>We can keep the workflow straightforward from the first message to delivery.</p></div>
+        <div class="process-grid">
+          <article class="process-card"><span class="process-number">01</span><h3>Share your task</h3><p>Explain what you need, your preferred format, and your deadline.</p></article>
+          <article class="process-card"><span class="process-number">02</span><h3>Confirm the details</h3><p>Agree on the scope, requirements, delivery timeline, and price.</p></article>
+          <article class="process-card"><span class="process-number">03</span><h3>Receive organized work</h3><p>I complete the agreed task and keep communication clear along the way.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <h2>Let's make your workload lighter.</h2>
+          <p>Have a one-time task or need ongoing support? Message me to discuss your requirements, flexible pricing, and whether a small trial task is suitable.</p>
+          <div class="contact-actions">
+            <a class="btn btn-secondary" href="https://www.fiverr.com/s/Bbbe1kW" target="_blank" rel="noopener noreferrer">Contact Me on Fiverr <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-whatsapp" href="https://wa.me/8801717212789" target="_blank" rel="noopener noreferrer">Message Me on WhatsApp <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="contact-details">
+            <a href="https://wa.me/8801717212789" target="_blank" rel="noopener noreferrer">WhatsApp: +880 1717 212789</a>
+            <a href="mailto:sahabur.connect@gmail.com">sahabur.connect@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner"><span>© 2026 Sahabur Rahman · Virtual Assistant</span><a href="#home">Back to top ↑</a></div>
+  </footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open navigation menu');
+        menuToggle.textContent = '☰';
+      });
+    });
+  </script>
 </body>
 </html>
